@@ -10,19 +10,37 @@ namespace class_oop
 {
     internal class Person
     {
-        public string FirstName = "John";
-        public string LastName = "Doe";
-        public readonly string CNP="1234"; // valoare implicita se poate modificain zona constructor(#1)
+        private string _firstName = "John";
+          private string _lastName = "Doe";
+        private readonly string _cnp="1234"; // valoare implicita se poate modificain zona constructor(#1)
     
 
-        public static int PopulationCount = 0;
-        public static readonly int MaxLifespanYears = InitMaxLifespan();
+        private static int populationCount = 0;
+        private static readonly int MaxLifespanYears = InitMaxLifespan();
      //   public const int Factor = 2; //const in alt const
      //   public const int  MaxLifespanYears= 60 * Factor + 10; //const sintaxa initializatoare
          public Person(string cnp) // acesta este un constructor 
         {     //readonly poate fi modificat in constructor(#2)
-            CNP = "656565";
-            CNP = cnp;
+    
+            _cnp = cnp; //underscol
+        }
+        public string FirstName
+        {
+            get
+            {
+                return _firstName;
+            }
+            set
+            {     if(string.IsNullOrEmpty(value))
+                {
+                    _firstName = value;
+                }
+                else
+                {
+                    _firstName = string.Empty;
+                }
+                _firstName = value;
+            }
         }
         public void PrintPerson()
         {
